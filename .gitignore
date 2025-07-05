@@ -1,6 +1,10 @@
-.cmake/
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-build.ninja
+build/
 .vscode/
+cpp_node
+cpp_node.o
+*.o
+*.obj
+*.exe
+*.out
+*.log
+*.tmp
