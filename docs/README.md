@@ -26,23 +26,46 @@ This program is a work in progress and may contain bugs or incomplete features. 
 ## Roadmap
 ### Algorithms
 - List search algorithms
+    - Linear Search
+    - Binary Search
+    - Fibonacci Search
 - List sort algorithms
-- graph search algorithms
+    - Selection Sort
+    - Bubble Sort
+    - Insertion Sort
+    - Quick Sort
+    - Recursive Merge Sort
+    - Multithreaded Merge Sort
+- Graph search algorithms
+    - Breadth-First Search (BFS)
+    - Depth-First Search (DFS)
+    - Dijkstra's Algorithm
+    - Kruskal's Algorithm
 ### Data Structures
-- Linked List
-- LIFO and FIFO List (Stacks and Queues)
+- Linear Data Structures
+    - Doubly Linked List
+    - FIFO Queue
+    - LIFO Stack
 - Trees
+    - Binary Tree
     - Binary Search Tree
+    - Binary Indexed Tree
     - AVL Tree
     - Red Black Tree
-- Heaps
+- Graphs
+    - Undirected Graph
+    - Directed Graph
+- Hash Table
+- Heap
 ### Testing
 - Unit test for all data structures and algorithms
-### Benchmark Testing
-- Executable that test the time and memory complexity of each algorithm
-### Package installation
-- Library accessable through a single include command
-- apt package for easy installation of library and testing code
+- Integration test for package usability
+- Benchmark testing for time and memory complexity of each algorithm
+### Package Installation
+- Create a header-only library
+- Provide build instructions
+- Installable package for easy installation of library and testing code
+
 
 ## License
 This project is under the MIT License. See [LICENSE.md](LICENSE.md) for details. 
