@@ -1,0 +1,100 @@
+Linked List <typename T>
+================
+A doubly linked list is a data structure that is a list of linear nodes, where each node contains a value and pointers to the next and previous nodes in the list.
+
+Template Parameter
+T - The type of data stored in the linked list.
+
+Attributes
+# head: Linear_Node<T> - Pointer to the first node in the linked list.
+# tail: Linear_Node<T> - Pointer to the last node in the linked list.
+# size: int - The number of nodes in the linked list.
+
+Methods
++ head(): Linear_Node<T> - Returns a pointer to the first node in the linked list.
+    Return - A pointer to the first node in the linked list or null if the list is empty.
++ tail(): Linear_Node<T> - Returns a pointer to the last node in the linked list.
+    Return - A pointer to the last node in the linked list or null if the list is empty.
++ size(): int - Returns the number of nodes in the linked list.
+    Return - The number of nodes in the linked list.
++ is_empty(): bool - Checks if the linked list is empty.
+    Return - True if the linked list is empty, false otherwise.
++ append(value: T): void - Appends a new node with the provided value to the end of the linked list.
+    Parameter - value: The value to be stored in the new node.
++ append(node: Linear_Node<T>): void - Appends an existing node to the end of the linked list.
+    Parameter - node: A pointer to the node to be appended.
++ append(list: T[]): void - Appends an list of values as new nodes to the end of the linked list.
+    Parameter - list: An list of values to be appended as new nodes.
++ append(list: LinkedList<T>): void - Appends all nodes from another linked list to the end of this linked list.
+    Parameter - list: A pointer to the linked list whose nodes are to be appended.
++ prepend(value: T): void - Prepends a new node with the provided value to the beginning of the linked list.
+    Parameter - value: The value to be stored in the new node.
++ prepend(node: Linear_Node<T>): void - Prepends an existing node to the beginning of the linked list.
+    Parameter - node: A pointer to the node to be prepended.
++ add(value: T, index: int): void - Adds a new node with the provided value at the specified index in the linked list.
+    Parameter - value: The value to be stored in the new node.
+    Parameter - index: The index at which to add the new node.
+    Note - If the index is out of bounds, returns error.
++ add(node: Linear_Node<T>, index: int): void - Adds an existing node at the specified index in the linked list.
+    Parameter - node: A pointer to the node to be added.
+    Parameter - index: The index at which to add the node.
+    Note - If the index is out of bounds, returns error.
++ remove(index: int) : void - Removes the node at the specified index from the linked list.
+    Parameter - index: The index of the node to be removed.
+    Note - If the index is out of bounds, returns error.
++ remove(value: T): void - Removes the first occurrence of a node with the specified value from the linked list.
+    Parameter - value: The value of the node to be removed.
+    Note - If the value is not found, returns error.
++ remove(node: Linear_Node<T>): void - Removes the specified node from the linked list.
+    Parameter - node: A pointer to the node to be removed.
+    Note - If the node is not found, returns error.
++ clear(): void - Clears the linked list, removing all nodes.
++ contains(value: T): bool - Checks if the linked list contains a node with the specified value.
+    Parameter - value: The value to check for in the linked list.
+    Return - True if a node with the specified value exists in the linked list, false otherwise.
++ contains(node: Linear_Node<T>): bool - Checks if the linked list contains the specified node.
+    Parameter - node: A pointer to the node to check for in the linked list.
+    Return - True if the specified node exists in the linked list, false otherwise.
++ find(value: T): Linear_Node<T> - Finds the first node with the specified value in the linked list.
+    Parameter - value: The value to search for in the linked list.
+    Return - A pointer to the first node with the specified value, or null if not found.
++ find(node: Linear_Node<T>): Linear_Node<T> - Finds the specified node in the linked list.
+    Parameter - node: A pointer to the node to search for in the linked list.
+    Return - A pointer to the specified node if it exists in the linked list, or null if not found.
++ index_of(value: T): int - Returns the index of the first occurrence of a node with the specified value in the linked list.
+    Parameter - value: The value to search for in the linked list.
+    Return - The index of the first occurrence of a node with the specified value, or -1 if not found.
++ index_of(node: Linear_Node<T>): int - Returns the index of the specified node in the linked list.
+    Parameter - node: A pointer to the node to search for in the linked list.
+    Return - The index of the specified node if it exists in the linked list, or -1 if not found.
++ sort(): void - Sorts the linked list in ascending order based on the values stored in the nodes.
+    Note - returns error if the type T does not support comparison operations.
++ reverse(): void - Reverses the order of the nodes in the linked list.
++ reverse_sort(): void - Sorts the linked list in descending order based on the values stored in the nodes.
+    Note - returns error if the type T does not support comparison operations.
++ data(): T[] - Returns an list of the values stored in the linked list.
+    Return - An list containing the values stored in the linked list.
+
+Operators
++ operator= (list: LinkedList<T>): LinkedList<T> - Assigns another linked list to this linked list.
+    Parameter - list: The linked list to assign to this linked list.
+    Return - A reference to this linked list after assignment.
++ operator+ (list: LinkedList<T>): LinkedList<T> - Concatenates another linked list to this linked list.
+    Parameter - list: The linked list to concatenate to this linked list.
+    Return - A new linked list containing the nodes of both linked lists.
++ operator+= (list: LinkedList<T>): LinkedList<T> - Concatenates another linked list to this linked list.
+    Parameter - list: The linked list to concatenate to this linked list.
+    Return - A reference to this linked list after concatenation.
++ operator== (other: LinkedList<T>): bool - Compares this linked list with another linked list for equality.
+    Parameter - other: The other linked list to compare with.
+    Return - True if both linked lists contain the same nodes in the same order, false otherwise.
++ operator!= (other: LinkedList<T>): bool - Compares this linked list with another linked list for inequality.
+    Parameter - other: The other linked list to compare with.
+    Return - True if both linked lists do not contain the same nodes in the same order, false otherwise.
++ operator[] (index: int): Linear_Node<T> - Accesses the node at the specified index in the linked list.
+    Parameter - index: The index of the node to access.
+    Return - A pointer to the node at the specified index, or null if the index is out of bounds.
++ operator<< (os: std::ostream, list: LinkedList<T>): std::ostream - Outputs the linked list to the specified output stream.
+    Parameter - os: The output stream to which the linked list will be written.
+    Parameter - list: The linked list to output.
+    Return - The output stream after writing the linked list.
