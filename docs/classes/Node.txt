@@ -1,0 +1,115 @@
+Basic_Node<typeName T>
+    A basic building block for various data structures. It stores a single piece of data and provides methods to access and modify that data.
+
+Template Parameter
+T - The type of data stored in the node.
+
+Attributes
+# data: T - The data stored in the node.
+
+Methods
++ data(): T - Returns the data stored in the node.
+    Return - The data stored in the node.
++ set(value: T): void - Sets the data stored in the node to the provided value.
+    Parameter - value: The value to set the data to.
+
+Operators
++ operator= (value: T): Basic_Node<T> - Assigns a value to the data stored in this node.
+    Parameter - value: The value to assign to the data.
+    Return - A reference to this node after assignment.
++ operator== (other: Basic_Node<T>): bool - Compare the data stored in a node with the data stored in the other node.
+    Parameter - other: The other node to compare with.
+    Return - True if the nodes' data are equal, false otherwise.
++ operator!= (other: Basic_Node<T>): bool - Compare the data stored in a node with the data stored in the other node for inequality.
+    Parameter - other: The other node to compare with.
+    Return - True if the nodes' data are not equal, false otherwise.
+
+Linear_Node:Basic_Node<typeName T>
+    A specialized node that is used in linear data structures like linked lists.
+
+Attributes
+# next: Basic_Node<T> - Pointer to the next node in the linked list.
+# prev: Basic_Node<T> - Pointer to the previous node in the linked list.
+
+Methods
++ next(): Basic_Node<T> - Returns a pointer to the next node in the linked list.
+    Return - A pointer to the next node in the linked list or null if there is no next node.
++ prev(): Basic_Node<T> - Returns a pointer to the previous node in the linked list.
+    Return - A pointer to the previous node in the linked list or null if there is no previous node.
++ set_next(next: Basic_Node<T>): void - Sets the next node pointer to the provided node.
+    Parameter - next: A pointer to the next node in the linked list.
++ set_prev(prev: Basic_Node<T>): void - Sets the previous node pointer to the provided node.
+    Parameter - prev: A pointer to the previous node in the linked list.
+
+Tree_Node:Basic_Node<typeName T>
+    A specialized node that is used in tree data structures.
+
+Attributes
+# children: Basic_Node<T>[] - A list of pointers to child nodes in the tree.
+
+Methods
++ add_child(child: Basic_Node<T>): void - Adds a child node to the current node.
+    Parameter - child: A pointer to the child node to be added.
++ remove_child(int index): void - Removes a child node at the specified index.
+    Parameter - index: The index of the child node to be removed.
+    Note - If the index is out of bounds, returns error.
++ remove_child(child: Basic_Node<T>): void - Removes a child node from the current node.
+    Parameter - child: A pointer to the child node to be removed.
++ get_children(): Basic_Node<T>[] - Returns a list of pointers to child nodes.
+    Return - A list of pointers to child nodes in the tree.
+
+Binary_Tree_Node:Basic_Node<typeName T>
+    A specialized node that is used in binary tree data structures.
+
+Attributes
+# left: Basic_Node<T> - Pointer to the left child node in the binary tree.
+# right: Basic_Node<T> - Pointer to the right child node in the binary tree.
+
+Methods
++ left(): Basic_Node<T> - Returns a pointer to the left child node.
+    Return - A pointer to the left child node in the binary tree.
++ right(): Basic_Node<T> - Returns a pointer to the right child node.
+    Return - A pointer to the right child node in the binary tree.
++ set_left(Basic_Node<T> leftNode): void - Sets the left child node pointer to the provided node.
+    Parameter - leftNode: A pointer to the left child node in the binary tree.
++ set_right(Basic_Node<T> rightNode): void - Sets the right child node pointer to the provided node.
+    Parameter - rightNode: A pointer to the right child node in the binary tree.
+
+Balanced_Tree_Node:Binary_Tree_Node<typeName T>
+    A specialized node that is used in balanced tree data structures, such as AVL trees or Red-Black trees.
+
+Attributes
+# height: int - The height of the node in the tree, the number of edges on the longest path from the node to a leaf, used for balancing purposes.
+# balance_factor: int - The balance factor of the node, used for balancing purposes. Negative values indicate a left-heavy tree, positive values indicate a right-heavy tree, and zero indicates a balanced tree.
+
+Methods
+# check_balance(): void - Checks the balance of the node and updates the height and balance factor accordingly. Called after the addition or removal of nodes.
+    Note - This method is typically called after modifying the tree structure to ensure that the node remains balanced.
+# rebalance(): void - Rebalances the node if it is unbalanced, adjusting pointers to maintain the properties of the balanced tree. This method is called if check_balance() detects an imbalance.
+    Note - This method is typically called after check_balance() detects an imbalance.
+# rotate_left(): Basic_Node<T> - Performs a left rotation on the node to balance the tree.
+    Return - A pointer to the new root of the subtree after the left rotation.
+# rotate_right(): Basic_Node<T> - Performs a right rotation on the node to balance the tree.
+    Return - A pointer to the new root of the subtree after the right rotation.
+# check_height(): void - Checks the height of the node and updates it based on the heights of its children.
++ get_height(): int - Returns the height of the node.
+    Return - The height of the node in the tree.
++ get_balance_factor(): int - Returns the balance factor of the node.
+    Return - The balance factor of the node.
+
+Graph_Node:Basic_Node<typeName T>
+    A specialized node that is used in graph data structures.
+
+Attributes
+# edges: Basic_Node<T>[] - A list of pointers to connected nodes or edges in the graph.
+
+Methods
++ add_edge(Basic_Node<T>* edgeNode): void - Adds an edge to the current node.
+    Parameter - edgeNode: A pointer to the node that is connected by the edge.
++ remove_edge(int index): void - Removes an edge at the specified index.
+    Parameter - index: The index of the edge to be removed.
+    Note - If the index is out of bounds, returns error.
++ remove_edge(Basic_Node<T>* edgeNode): void - Removes a specific edge from the current node.
+    Parameter - edgeNode: A pointer to the node that is connected by the edge to be removed.
++ get_edges(): Basic_Node<T>[] - Returns a list of pointers to connected nodes (edges).
+    Return - A list of pointers to connected nodes in the graph.
