@@ -41,6 +41,38 @@ Methods
 + set_prev(prev: Basic_Node<T>): void - Sets the previous node pointer to the provided node.
     Parameter - prev: A pointer to the previous node in the linked list.
 
+Priority_Node:Linear_Node<typeName T>
+    A specialized node that is used in priority queues, which allows elements to be added with a priority.
+
+Attributes
+# priority: int - The priority of the node, used to determine the order in which nodes are dequeued.
+
+Methods
++ priority(): int - Returns the priority of the node.
+    Return - The priority of the node.
++ set_priority(priority: int): void - Sets the priority of the node to the provided value.
+    Parameter - priority: The priority value to set for the node.
+
+Operators
++ operator< (other: Priority_Node<T>): bool - Compares the priority of this node with another priority node.
+    Parameter - other: The other priority node to compare with.
+    Return - True if this node's priority is less than the other node's priority, false otherwise.
++ operator<= (other: Priority_Node<T>): bool - Compares the priority of this node with another priority node for less than or equal to.
+    Parameter - other: The other priority node to compare with.
+    Return - True if this node's priority is less than or equal to the other node's priority, false otherwise.
++ operator> (other: Priority_Node<T>): bool - Compares the priority of this node with another priority node for greater than.
+    Parameter - other: The other priority node to compare with.
+    Return - True if this node's priority is greater than the other node's priority, false otherwise.
++ operator>= (other: Priority_Node<T>): bool - Compares the priority of this node with another priority node for greater than or equal to.
+    Parameter - other: The other priority node to compare with.
+    Return - True if this node's priority is greater than or equal to the other node's priority, false otherwise.
++ operator== (other: Priority_Node<T>): bool - Compares the priority of this node with another priority node for equality.
+    Parameter - other: The other priority node to compare with.
+    Return - True if this node's priority is equal to the other node's priority, false otherwise.
++ operator!= (other: Priority_Node<T>): bool - Compares the priority of this node with another priority node for inequality.
+    Parameter - other: The other priority node to compare with.
+    Return - True if this node's priority is not equal to the other node's priority, false otherwise.
+
 Tree_Node:Basic_Node<typeName T>
     A specialized node that is used in tree data structures.
 

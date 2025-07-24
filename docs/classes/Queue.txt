@@ -1,0 +1,81 @@
+Queue <typeName T>
+==================
+A queue data structure that follows the First In First Out (FIFO) principle.
+
+Template Parameter
+T - The type of data stored in the queue.
+
+Attributes
+# head: Linear_Node<T> - Pointer to the first node in the queue.
+# tail: Linear_Node<T> - Pointer to the last node in the queue.
+# size: int - The number of nodes in the queue.
+
+Methods
++ head(): Linear_Node<T> - Returns a pointer to the first node in the queue.
+    Return - A pointer to the first node in the queue or null if the queue is empty.
++ tail(): Linear_Node<T> - Returns a pointer to the last node in the queue.
+    Return - A pointer to the last node in the queue or null if the queue is empty.
++ size(): int - Returns the number of nodes in the queue.
+    Return - The number of nodes in the queue.
++ is_empty(): bool - Checks if the queue is empty.
+    Return - True if the queue is empty, false otherwise.
++ clear(): void - Clears the queue, removing all nodes.
++ data(): T[] - Returns an list of values stored in the queue.
+    Return - An list of values stored in the queue.
++ push(value: T): void - Adds a new node with the provided value to the end of the queue.
+    Parameter - value: The value to be stored in the new node.
++ push(node: Linear_Node<T>): void - Adds an existing node to the end of the queue.
+    Parameter - node: A pointer to the node to be added.
++ push(list: T[]): void - Adds an list of values as new nodes to the end of the queue.
+    Parameter - list: An list of values to be added as new nodes.
++ push(list: LinkedList<T>): void - Adds all nodes from another linked list to the end of this queue.
+    Parameter - list: A pointer to the linked list whose nodes are to be added.
++ pop(): T - Removes and returns the value of the first node in the queue.
+    Return - The value of the first node in the queue.
++ pop_node(): Linear_Node<T> - Removes and returns the first node in the queue.
+    Return - A pointer to the first node in the queue.
++ peek(): T - Returns the value of the first node in the queue without removing it.
+    Return - The value of the first node in the queue.
++ peek_node(): Linear_Node<T> - Returns a pointer to the first node in the queue without removing it.
+    Return - A pointer to the first node in the queue.
+
+Operators
++ operator+ (other: Queue<T>): Queue<T> - Combines two queues into one by adding the elements of the other queue to the end of this queue.
+    Parameter - other: The other queue to combine with this queue.
+    Return - A new queue containing all elements from both queues.
++ operator+= (other: Queue<T>): Queue<T> - Adds all elements from another queue to the end of this queue.
+    Parameter - other: The other queue whose elements are to be added.
+    Return - A reference to this queue after adding the elements.
++ operator== (other: Queue<T>): bool - Compares two queues for equality.
+    Parameter - other: The other queue to compare with.
+    Return - True if both queues contain the same elements in the same order, false otherwise.
++ operator!= (other: Queue<T>): bool - Compares two queues for inequality.
+    Parameter - other: The other queue to compare with.
+    Return - True if the queues do not contain the same elements in the same order, false otherwise.
++ operator<< (os: std::ostream, queue: Queue<T>): std::ostream - Outputs the contents of the queue to a stream.
+    Parameter - os: The output stream to write to.
+    Parameter - queue: The queue whose contents are to be output.
+    Return - The output stream after writing the queue contents.
+
+Priority_Queue:Queue<typeName T>
+===============
+A priority queue data structure that allows elements to be added with a priority and dequeued based on their priority.
+    Note - inherits from Queue<T> and extends its functionality to handle priority nodes.
+    Push methods are overridden to include priority handling, but pop and peak methods remain the same as in Queue<T>.
+
+Template Parameter
+T - The type of data stored in the priority queue.
+
+Methods
++ push(value: T, priority: int): void - Adds a new node with the provided value and priority to the queue.
+    Parameter - value: The value to be stored in the new node.
+    Parameter - priority: The priority of the node.
++ push(node: Priority_Node<T>): void - Adds an existing priority node to the queue.
+    Parameter - node: A pointer to the priority node to be added.
++ push(list: T[], priority: int): void - Adds an array of values as new priority nodes to the queue.
+    Parameter - list: An array of values to be added as new priority nodes.
+    Parameter - priority: The priority of all the new nodes.
++ push(list: LinkedList<Priority_Node<T>>): void - Adds all nodes from another linked list to the end of this queue.
+    Parameter - list: A pointer to the linked list whose nodes are to be added.
+# prioritize(): void - Reorders the queue based on the priority of the nodes.
+    Note - This method ensures that nodes are dequeued in order of their priority, with higher priority nodes being dequeued first.
