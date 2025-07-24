@@ -1,0 +1,51 @@
+Stack <typename T>
+=====
+A Stack is a data structure that follows the Last In First Out (LIFO) principle. It allows you to add and remove elements in a specific order.
+
+Template Parameter
+T - The type of data stored in the stack.
+
+Attributes
+# head: Linear_Node<T> - Pointer to the top node in the stack.
+# size: int - The number of nodes in the stack.
+
+Methods
++ head(): Linear_Node<T> - Returns a pointer to the top node in the stack.
+    Return - A pointer to the top node in the stack or null if the stack is empty.
++ size(): int - Returns the number of nodes in the stack.
+    Return - The number of nodes in the stack.
++ is_empty(): bool - Checks if the stack is empty.
+    Return - True if the stack is empty, false otherwise.
++ clear(): void - Clears the stack, removing all nodes.
++ data(): T[] - Returns a list of values stored in the stack.
+    Return - A list of values stored in the stack.
++ push(value: T): void - Adds a new node with the provided value to the top of the stack.
+    Parameter - value: The value to be stored in the new node.
++ push(node: Linear_Node<T>): void - Adds an existing node to the top of the stack.
+    Parameter - node: A pointer to the node to be added.
++ push(list: T[]): void - Adds a list of values as new nodes to the top of the stack.
+    Parameter - list: A list of values to be added as new nodes.
++ push(list: LinkedList<T>): void - Adds all nodes from another linked list to the top of this stack.
+    Parameter - list: A pointer to the linked list whose nodes are to be added.
++ pop(): T - Removes and returns the value of the top node in the stack.
+    Return - The value of the top node in the stack.
++ pop_node(): Linear_Node<T> - Removes and returns the top node in the stack.
+    Return - A pointer to the top node in the stack.
++ peek(): T - Returns the value of the top node in the stack without removing it.
+    Return - The value of the top node in the stack.
++ peek_node(): Linear_Node<T> - Returns a pointer to the top node in the stack without removing it.
+    Return - A pointer to the top node in the stack.
+
+Operators
++ operator+ (other: Stack<T>): Stack<T> - Combines two stacks into one by adding the elements of the other stack to the top of this stack.
+    Parameter - other: The other stack to combine with this stack.
+    Return - A new stack containing all elements from both stacks.
++ operator+= (other: Stack<T>): Stack<T> - Adds all elements from another stack to the top of this stack.
+    Parameter - other: The other stack whose elements are to be added.
+    Return - A reference to this stack after adding the elements.
++ operator== (other: Stack<T>): bool - Compares two stacks for equality.
+    Parameter - other: The other stack to compare with.
+    Return - True if both stacks contain the same elements in the same order, false otherwise.
++ operator!= (other: Stack<T>): bool - Compares two stacks for inequality.
+    Parameter - other: The other stack to compare with.
+    Return - True if the stacks do not contain the same elements in the same order, false otherwise.
