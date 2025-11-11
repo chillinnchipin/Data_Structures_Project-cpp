@@ -4,19 +4,19 @@ linear_search<typeName T>(target: T, data: T[], int size): int - searches for th
     Param data - the list of items to search for the target in
     Param size - the size of data
     Return - the index of the target or -1 if target not found
-    * target and data must have the same type T.
+    Note - target and data must have the same type T.
 binary_search<typeName T>(target: T, data: T[], int size): int - searches for the location of target in list data using binary search and returns the index if found
     Param target - the target to search for
     Param data - the list of items to search for the target in
     Param size - the size of data
     Return - the index of the target or -1 if target not found
-    * target and data must have the same type T.
+    Note - target and data must have the same type T.
 fibonacci_search<typeName T>(target: T, data: T[], int size): int - searches for the location of target in list data using fibonacci search and returns the index if found
     Param target - the target to search for
     Param data - the list of items to search for the target in
     Param size - the size of data
     Return - the index of the target or -1 if target not found
-    * target and data must have the same type T.
+    Note - target and data must have the same type T.
 
 # Sort Algorithm
 selection_sort<typeName T>(data: T[], int size): T[] - sorts the list data using selection sort and returns a sorted list
