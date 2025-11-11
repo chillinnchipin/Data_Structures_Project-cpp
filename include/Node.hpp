@@ -70,3 +70,59 @@ public:
         return data != other.data;
     }
 };
+
+template <typename T>
+class Linear_Node : public Basic_Node<T>
+{
+protected:
+    /// @brief Pointer to the next node in the linked list
+    std::unique_ptr<Linear_Node<T>> next;
+    /// @brief Pointer to the previous node in the linked list
+    std::unique_ptr<Linear_Node<T>> prev;
+
+public:
+    // Constructors
+    /**
+     * @brief Default constructor that initializes the node with default value of T
+     */
+    Linear_Node() : Basic_Node<T>(), next(nullptr), prev(nullptr) {}
+    /**
+     * @brief Parameterized constructor that initializes the node with the provided value
+     * @param value The value to initialize the node with
+     */
+    Linear_Node(const T& value) : Basic_Node<T>(value), next(nullptr), prev(nullptr) {}
+
+    // Methods
+    /**
+     * @brief Returns a pointer to the next node in the linked list
+     * @return A pointer to the next node in the linked list or null if there is no next node
+     */
+    std::unique_ptr<Basic_Node<T>>& next()
+    {
+        return next;
+    }
+    /**
+     * @brief Returns a pointer to the previous node in the linked list
+     * @return A pointer to the previous node in the linked list or null if there is no previous node
+     */
+    std::unique_ptr<Basic_Node<T>>& prev()
+    {
+        return prev;
+    }
+    /**
+     * @brief Sets the next node pointer to the provided node
+     * @param next A pointer to the next node in the linked list
+     */
+    void set_next(std::unique_ptr<Basic_Node<T>>&& next)
+    {
+        this->next = std::move(next);
+    }
+    /**
+     * @brief Sets the previous node pointer to the provided node
+     * @param prev A pointer to the previous node in the linked list
+     */
+    void set_prev(std::unique_ptr<Basic_Node<T>>&& prev)
+    {
+        this->prev = std::move(prev);
+    }
+};
