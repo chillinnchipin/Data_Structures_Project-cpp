@@ -8,3 +8,5 @@ cpp_node.o
 *.out
 *.log
 *.tmp
+*notes.*
+*temp.*
