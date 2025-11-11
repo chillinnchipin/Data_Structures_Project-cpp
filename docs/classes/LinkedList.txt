@@ -11,6 +11,8 @@ Attributes
 # size: int - The number of nodes in the linked list.
 
 Methods
+- validate(): void - Validates the integrity of the linked list, ensuring that all nodes are correctly linked.
+    Note - This method checks for any inconsistencies in the linked list structure and raises an error if any issues are found.
 + head(): Linear_Node<T> - Returns a pointer to the first node in the linked list.
     Return - A pointer to the first node in the linked list or null if the list is empty.
 + tail(): Linear_Node<T> - Returns a pointer to the last node in the linked list.
