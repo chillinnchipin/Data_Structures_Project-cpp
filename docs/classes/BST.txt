@@ -1,0 +1,32 @@
+Tree <typename T>
+====
+A tree is a hierarchical data structure consisting of nodes, where each node contains a value and references to its child nodes. The topmost node is called the root, and nodes with no children are called leaves. Trees are used to represent hierarchical relationships, such as file systems or organizational structures.
+
+Template Parameter
+T - The type of data stored in the tree nodes.
+
+Attributes
+# root: Tree_Node<T> - Pointer to the root node of the tree.
+# size: int - The number of nodes in the tree.
+
+Methods
+# validate(): void - Validates the integrity of the tree, ensuring that all nodes are correctly linked.
+    Note - This method checks for any inconsistencies in the tree structure and raises an error if any are found.
++ root(): Tree_Node<T> - Returns a pointer to the root node of the tree.
+    Return - A pointer to the root node of the tree or null if the tree is empty.
++ size(): int - Returns the number of nodes in the tree.
+    Return - The number of nodes in the tree.
++ is_empty(): bool - Checks if the tree is empty.
+    Return - True if the tree is empty, false otherwise.
++ append(value: T): void - Appends a new node with the provided value to the tree.
+    Parameter - value: The value to be stored in the new node.
++ append(node: Tree_Node<T>): void - Appends an existing node to the tree.
+    Parameter - node: A pointer to the node to be appended.
++ append(tree: Tree<T>): void - Appends all nodes from another tree to this tree.
+    Parameter - tree: A pointer to the tree whose nodes are to be appended.
+
+Binary Tree:Tree <typename T>
+===========
+
+Binary Search Tree (BST):Binary Tree <typename T>
+=================
