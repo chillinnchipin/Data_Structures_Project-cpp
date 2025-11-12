@@ -84,7 +84,7 @@ Methods
     Parameter - child: A pointer to the child node to be added.
 + remove_child(int index): void - Removes a child node at the specified index.
     Parameter - index: The index of the child node to be removed.
-    Note - If the index is out of bounds, returns error.
+    Note - If the index is out of bounds, throws error.
 + remove_child(child: Basic_Node<T>): void - Removes a child node from the current node.
     Parameter - child: A pointer to the child node to be removed.
 + get_children(): Basic_Node<T>[] - Returns a list of pointers to child nodes.
