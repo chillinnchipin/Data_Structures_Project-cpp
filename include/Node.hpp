@@ -227,3 +227,73 @@ public:
         return priority != other.priority;
     }
 };
+
+template <typename T>
+class N_Tree_Node : public Basic_Node<T>
+{
+    protected:
+    // Attributes
+
+    /// @brief A list of pointers to child nodes in the tree
+    std::vector<std::unique_ptr<Basic_Node<T>>> children;
+
+    public:
+    // Constructors
+    /**
+     * @brief Default constructor that initializes the node with default value of T
+     */
+    N_Tree_Node() : Basic_Node<T>(), children() {}
+    /**
+     * @brief Parameterized constructor that initializes the node with the provided value
+     * @param value The value to initialize the node with
+     */
+    N_Tree_Node(const T& value) : Basic_Node<T>(value), children() {}
+
+    // Methods
+    /**
+     * @brief Adds a child node to the current node
+     * @param child A pointer to the child node to be added
+     */
+    void add_child(std::unique_ptr<Basic_Node<T>> child)
+    {
+        children.push_back(std::move(child));
+    }
+
+    /**
+     * @brief Removes a child node from the current node at the specified index
+     * @param index The index of the child node to be removed
+     * @note If the index is out of bounds, throws an error
+     */
+    void remove_child(size_t index)
+    {
+        if (index < children.size())
+        {
+            children.erase(children.begin() + index);
+        } else {
+            throw std::out_of_range("Index out of bounds");
+        }
+    }
+
+    /**
+     * @brief Removes a child node from the current node
+     * @param child A pointer to the child node to be removed
+     */
+    void remove_child(std::unique_ptr<Basic_Node<T>>& child)
+    {
+        auto found = std::find_if(children.begin(), children.end(),
+            [&child](const std::unique_ptr<Basic_Node<T>>& current) { return current.get() == child.get(); });
+        if (found != children.end())
+        {
+            children.erase(found);
+        }
+    }
+
+    /**
+     * @brief Returns a list of pointers to child nodes
+     * @return A list of pointers to child nodes in the tree
+     */
+    std::vector<std::unique_ptr<Basic_Node<T>>>& get_children()
+    {
+        return children;
+    }
+};
