@@ -126,3 +126,104 @@ public:
         this->prev = std::move(prev);
     }
 };
+
+template <typename T>
+class Priority_Node : public Basic_Node<T>
+{
+protected:
+    /// @brief The priority of the node, used to determine the order in which nodes are dequeued
+    int priority;
+
+public:
+    // Constructors
+    /**
+     * @brief Default constructor that initializes the node with default value of T
+     */
+    Priority_Node() : Basic_Node<T>(), priority(0) {}
+    /**
+     * @brief Parameterized constructor that initializes the node with the provided value and priority
+     * @param value The value to initialize the node with
+     */
+    Priority_Node(const T& value) : Basic_Node<T>(value), priority(0) {}
+    /**
+     * @brief Parameterized constructor that initializes the node with the provided value and priority
+     * @param value The value to initialize the node with
+     * @param priority The priority of the node
+     */
+    Priority_Node(const T& value, int priority) : Basic_Node<T>(value), priority(priority) {}
+
+    // Methods
+    /**
+     * @brief Returns the priority of the node
+     * @return The priority of the node
+     */
+    int priority() const
+    {
+        return priority;
+    }
+
+    /**
+     * @brief Sets the priority of the node to the provided value
+     * @param priority The value to set the priority to
+     */
+    void set_priority(int priority)
+    {
+        this->priority = priority;
+    }
+
+    // Operators
+    /**
+     * @brief Compare the priority of this node with the priority of the other node for less than
+     * @param other The other node to compare with
+     * @return True if this node's priority is less than the other node's priority, false otherwise
+     */
+    bool operator<(const Priority_Node& other) const
+    {
+        return priority < other.priority;
+    }
+    /**
+     * @brief Compare the priority of this node with the priority of the other node for greater than
+     * @param other The other node to compare with
+     * @return True if this node's priority is greater than the other node's priority, false otherwise
+     */
+    bool operator>(const Priority_Node& other) const
+    {
+        return priority > other.priority;
+    }
+    /**
+     * @brief Compare the priority of this node with the priority of the other node for less than or equal to
+     * @param other The other node to compare with
+     * @return True if this node's priority is less than or equal to the other node's priority, false otherwise
+     */
+    bool operator<=(const Priority_Node& other) const
+    {
+        return priority <= other.priority;
+    }
+    /**
+     * @brief Compare the priority of this node with the priority of the other node for greater than or equal to
+     * @param other The other node to compare with
+     * @return True if this node's priority is greater than or equal to the other node's priority, false otherwise
+     */
+    bool operator>=(const Priority_Node& other) const
+    {
+        return priority >= other.priority;
+    }
+    /**
+     * @brief Compare the priority of this node with the priority of the other node for equality
+     * @param other The other node to compare with
+     * @return True if this node's priority is equal to the other node's priority, false otherwise
+     */
+    bool operator==(const Priority_Node& other) const
+    {
+        return priority == other.priority;
+    }
+    /**
+     * @brief Compare the priority of this node with the priority of the other node for inequality
+     * @param other The other node to compare with
+     * @return True if this node's priority is not equal to the other node's priority, false otherwise
+     */
+    bool operator!=(const Priority_Node& other) const
+    {
+        return priority != other.priority;
+    }
+};
