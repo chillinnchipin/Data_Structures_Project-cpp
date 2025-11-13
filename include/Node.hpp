@@ -319,3 +319,89 @@ class N_Tree_Node : public Basic_Node<T>
         return size;
     }
 };
+
+template <typename T>
+class Binary_Tree_Node : public N_Tree_Node<T>
+{
+protected:
+    /// @brief Pointer to the left child node in the binary tree
+    std::unique_ptr<Basic_Node<T>> left;
+    /// @brief Pointer to the right child node in the binary tree
+    std::unique_ptr<Basic_Node<T>> right;
+    /// @brief The maximum number of children for a binary tree node (2)
+    static const size_t MAX_CHILDREN = 2;
+public:
+    // Constructors
+    /**
+     * @brief Default constructor that initializes the node with default value of T
+     */
+    Binary_Tree_Node() : N_Tree_Node<T>() {}
+    /**
+     * @brief Parameterized constructor that initializes the node with the provided value
+     * @param value The value to initialize the node with
+     */
+    Binary_Tree_Node(const T& value) : N_Tree_Node<T>(value) {}
+
+    // Methods
+    /**
+     * @brief Returns a pointer to the left child node
+     * @return A pointer to the left child node or null if there is no left child
+     */
+    std::unique_ptr<Basic_Node<T>> left() const
+    {
+        return left;
+    }
+
+    /**
+     * @brief Returns a pointer to the right child node
+     * @return A pointer to the right child node or null if there is no right child
+     */
+    std::unique_ptr<Basic_Node<T>> right() const
+    {
+        return right;
+    }
+
+    /**
+     * @brief Sets the left child node to the provided node
+     * @param left A pointer to the left child node
+     */
+    void set_left(std::unique_ptr<Basic_Node<T>> left)
+    {
+        if (this->left == nullptr) size++;
+        this->left = std::move(left);
+        children.at(0) = std::move(this->left);
+    }
+
+    /**
+     * @brief Sets the right child node to the provided node
+     * @param right A pointer to the right child node
+     */
+    void set_right(std::unique_ptr<Basic_Node<T>> right)
+    {
+        if (this->right == nullptr) size++;
+        this->right = std::move(right);
+        children.at(1) = std::move(this->right);
+    }
+
+    /**
+     * @brief Overrides the add_child method to ensure only two children can be added
+     * @param child A pointer to the child node to be added
+     * @note If more than two children are added, throws an error
+     */
+    void add_child(std::unique_ptr<Basic_Node<T>> child) override
+    {
+        if (size >= MAX_CHILDREN)
+        {
+            throw std::runtime_error("Cannot add more than two children to a binary tree node");
+        }
+        if (left == nullptr)
+        {
+            set_left(std::move(child));
+        }
+        else
+        {
+            set_right(std::move(child));
+        }
+        size++;
+    }
+};
