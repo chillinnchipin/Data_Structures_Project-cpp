@@ -405,3 +405,92 @@ public:
         size++;
     }
 };
+
+template <typename T>
+class Balanced_Tree_Node : public Binary_Tree_Node<T>
+{
+protected:
+    /// @brief The height of the node in the balanced tree, the number of edges on the longest path from the node to a leaf, used for balancing purposes
+    size_t height;
+    /// @brief The balance factor of the node, used for balancing purposes. Negative values indicate a left-heavy tree, positive values indicate a right-heavy tree, and zero indicates a balanced tree
+    int balance_factor;
+
+public:
+    // Constructors
+    /**
+     * @brief Default constructor that initializes the node with default value of T
+     */
+    Balanced_Tree_Node() : Binary_Tree_Node<T>(), height(0), balance_factor(0) {}
+    /**
+     * @brief Parameterized constructor that initializes the node with the provided value
+     * @param value The value to initialize the node with
+     */
+    Balanced_Tree_Node(const T& value) : Binary_Tree_Node<T>(value), height(0), balance_factor(0) {}
+
+    // Methods
+    /**
+     * @brief Returns the height of the node
+     * @return The height of the node
+     */
+    size_t height() const
+    {
+        return height;
+    }
+
+    /**
+     * @brief Sets the height of the node to the provided value
+     * @param height The value to set the height to
+     */
+    void set_height(size_t height)
+    {
+        this->height = height;
+    }
+
+    /**
+     * @brief Returns the balance factor of the node
+     * @return The balance factor of the node
+     */
+    int balance_factor() const
+    {
+        return balance_factor;
+    }
+
+    /**
+     * @brief Sets the balance factor of the node to the provided value
+     * @param balance_factor The value to set the balance factor to
+     */
+    void set_balance_factor(int balance_factor)
+    {
+        this->balance_factor = balance_factor;
+    }
+
+protected:
+    /**
+     * @brief Checks the balance of the node and updates the height and balance factor accordingly
+     * @note This method is typically called after modifying the tree structure to ensure that the node remains balanced
+     */
+    void check_balance();
+
+    /**
+     * @brief Rebalances the node if it is unbalanced, adjusting pointers to maintain the properties of the balanced tree
+     * @note This method is called if check_balance() detects an imbalance
+     */
+    void rebalance();
+
+    /**
+     * @brief Performs a left rotation on the node to balance the tree.
+     * @return A pointer to the new root of the subtree after the left rotation.
+     */
+    std::unique_ptr<Balanced_Tree_Node<T>> left_rotate();
+
+    /**
+     * @brief Performs a right rotation on the node to balance the tree
+     * @return A pointer to the new root of the subtree after the right rotation
+     */
+    std::unique_ptr<Balanced_Tree_Node<T>> right_rotate();
+
+    /**
+     * @brief Checks the height of the node and updates it based on the heights of its children
+     */
+    void check_height();
+};
