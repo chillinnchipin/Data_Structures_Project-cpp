@@ -17,8 +17,8 @@ See Roadmap for future features.
 ## Support
 While this is a personal project, it is open to suggestions and bug reports.
 If you want to make a suggestion or report a bug, please:  
-[Open an issue](https://github.com/chillinnchipin/cpp_node/issues)  
-[Submit a pull request](https://github.com/chillinnchipin/cpp_node/pulls)  
+[Open an issue](https://github.com/chillinnchipin/ch_cpp_node/issues)  
+[Submit a pull request](https://github.com/chillinnchipin/ch_cpp_node/pulls)  
 email me: chiphardy1995@icloud.com
 ### Disclaimer
 This program is a work in progress and may contain bugs or incomplete features. Use it at your own risk.
