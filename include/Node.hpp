@@ -237,6 +237,9 @@ class N_Tree_Node : public Basic_Node<T>
     /// @brief A list of pointers to child nodes in the tree
     std::vector<std::unique_ptr<Basic_Node<T>>> children;
 
+    /// @brief the number of children nodes this node has
+    size_t size;
+
     public:
     // Constructors
     /**
@@ -248,6 +251,13 @@ class N_Tree_Node : public Basic_Node<T>
      * @param value The value to initialize the node with
      */
     N_Tree_Node(const T& value) : Basic_Node<T>(value), children() {}
+    /**
+     * @brief Parameterized constructor that initializes the node with the provided value and children
+     * @param value The value to initialize the node with
+     * @param children A list of pointers to child nodes in the tree
+     */
+    N_Tree_Node(const T& value, const std::vector<std::unique_ptr<Basic_Node<T>>>& children)
+        : Basic_Node<T>(value), children(children), size(children.size()) {}
 
     // Methods
     /**
@@ -257,6 +267,7 @@ class N_Tree_Node : public Basic_Node<T>
     void add_child(std::unique_ptr<Basic_Node<T>> child)
     {
         children.push_back(std::move(child));
+        size++;
     }
 
     /**
@@ -269,6 +280,7 @@ class N_Tree_Node : public Basic_Node<T>
         if (index < children.size())
         {
             children.erase(children.begin() + index);
+            size--;
         } else {
             throw std::out_of_range("Index out of bounds");
         }
@@ -285,6 +297,7 @@ class N_Tree_Node : public Basic_Node<T>
         if (found != children.end())
         {
             children.erase(found);
+            size--;
         }
     }
 
@@ -295,5 +308,14 @@ class N_Tree_Node : public Basic_Node<T>
     std::vector<std::unique_ptr<Basic_Node<T>>>& get_children()
     {
         return children;
+    }
+
+    /**
+     * @brief Returns the number of children nodes this node has
+     * @return The number of children nodes
+     */
+    size_t size() const
+    {
+        return size;
     }
 };
