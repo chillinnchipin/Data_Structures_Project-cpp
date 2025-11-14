@@ -477,29 +477,66 @@ namespace node
          * @brief Checks the balance of the node and updates the height and balance factor accordingly
          * @note This method is typically called after modifying the tree structure to ensure that the node remains balanced
          */
-        void check_balance();
+        void check_balance() {
+            // the height on the left and right of the node
+            size_t left_height = 0;
+            size_t right_height = 0;
+
+            // gets the left height
+            if (this->left)
+                left_height = left->height();
+
+            // gets the right height
+            if (this->right)
+                right_height = right->height();
+
+            // sets the height and balance factor
+            height = 1 + std::max(left_height, right_height);
+            balance_factor = static_cast<int>(right_height) - static_cast<int>(left_height);
+
+            // calls rebalance if node is unbalanced
+            if (balance_factor < -1 || balance_factor > 1)
+            {
+                rebalance();
+            }
+        }
 
         /**
          * @brief Rebalances the node if it is unbalanced, adjusting pointers to maintain the properties of the balanced tree
          * @note This method is called if check_balance() detects an imbalance
          */
-        void rebalance();
+        void rebalance() {
+            // Check for direction of inbalance
+            if (balance_factor > 1) {
+                // Right heavy, peform left rotate
+                *this = left_rotate();
+            } else if (balance_factor < -1) {
+                // Left heavy, perform right rotate
+                *this = right_rotate();
+            }
+        }
 
         /**
          * @brief Performs a left rotation on the node to balance the tree.
          * @return A pointer to the new root of the subtree after the left rotation.
          */
-        std::unique_ptr<Balanced_Tree_Node<T>> left_rotate();
+        std::unique_ptr<Balanced_Tree_Node<T>> left_rotate() {
+            // TODO
+        }
 
         /**
          * @brief Performs a right rotation on the node to balance the tree
          * @return A pointer to the new root of the subtree after the right rotation
          */
-        std::unique_ptr<Balanced_Tree_Node<T>> right_rotate();
+        std::unique_ptr<Balanced_Tree_Node<T>> right_rotate() {
+            // TODO
+        }
 
         /**
          * @brief Checks the height of the node and updates it based on the heights of its children
          */
-        void check_height();
+        void check_height() {
+            // TODO
+        }
     };
 }
