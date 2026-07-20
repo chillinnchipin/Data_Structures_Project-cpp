@@ -1,3 +1,9 @@
+#pragma once
+#include <memory>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
 namespace node
 {
     template <typename T>

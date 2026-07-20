@@ -1,5 +1,5 @@
+#pragma once
 #include "Node.hpp"
-
 namespace structures {
     template <typename T>
     class Linked_List {
