@@ -546,11 +546,11 @@ namespace node
 
             // gets the left height
             if (this->m_left)
-                left_height = m_left->height();
+                left_height = Binary_Tree_Node<T>::m_left->height();
 
             // gets the right height
-            if (this->right)
-                right_height = right->height();
+            if (this->m_right)
+                right_height = Binary_Tree_Node<T>::m_right->height();
 
             // sets the height and balance factor
             m_height = 1 + std::max(left_height, right_height);

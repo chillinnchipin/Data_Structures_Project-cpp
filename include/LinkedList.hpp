@@ -277,6 +277,6 @@ namespace structures {
          * @param list The linked list to be printed
          * @return The output stream after printing the linked list
          */
-        std::ostream operator<< (std::ostream os, Linked_List<T> list);
+        friend std::ostream &operator<<(std::ostream os, Linked_List<T> &list);
     };
 }
