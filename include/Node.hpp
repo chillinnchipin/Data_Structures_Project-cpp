@@ -11,19 +11,19 @@ namespace node
     {
     protected:
         /// @brief The data stored in the node
-        T data;
+        T m_data;
 
     public:
         // Constructors
         /**
          * @brief Default constructor that initializes the node with default value of T
          */
-        Basic_Node() : data() {}
+        Basic_Node() : m_data() {}
         /**
          * @brief Parameterized constructor that initializes the node with the provided value
          * @param value The value to initialize the node with
          */
-        Basic_Node(const T &value) : data(value) {}
+        Basic_Node(const T &value) : m_data(value) {}
 
         // Methods
 
@@ -33,7 +33,7 @@ namespace node
          */
         T data() const
         {
-            return data;
+            return m_data;
         }
 
         /**
@@ -42,7 +42,7 @@ namespace node
          */
         void set(const T &value)
         {
-            data = value;
+            m_data = value;
         }
 
         // Operators
@@ -65,7 +65,7 @@ namespace node
          */
         bool operator==(const Basic_Node &other) const
         {
-            return data == other.data;
+            return m_data == other.data();
         }
 
         /**
@@ -75,7 +75,7 @@ namespace node
          */
         bool operator!=(const Basic_Node &other) const
         {
-            return data != other.data;
+            return m_data != other.data;
         }
     };
 
@@ -84,21 +84,21 @@ namespace node
     {
     protected:
         /// @brief Pointer to the next node in the linked list
-        std::unique_ptr<Linear_Node<T>> next;
+        std::unique_ptr<Linear_Node<T>> m_next;
         /// @brief Pointer to the previous node in the linked list
-        std::unique_ptr<Linear_Node<T>> prev;
+        std::unique_ptr<Linear_Node<T>> m_prev;
 
     public:
         // Constructors
         /**
          * @brief Default constructor that initializes the node with default value of T
          */
-        Linear_Node() : Basic_Node<T>(), next(nullptr), prev(nullptr) {}
+        Linear_Node() : Basic_Node<T>(), m_next(nullptr), m_prev(nullptr) {}
         /**
          * @brief Parameterized constructor that initializes the node with the provided value
          * @param value The value to initialize the node with
          */
-        Linear_Node(const T &value) : Basic_Node<T>(value), next(nullptr), prev(nullptr) {}
+        Linear_Node(const T &value) : Basic_Node<T>(value), m_next(nullptr), m_prev(nullptr) {}
 
         // Methods
         /**
@@ -107,7 +107,7 @@ namespace node
          */
         std::unique_ptr<Basic_Node<T>> &next()
         {
-            return next;
+            return m_next;
         }
         /**
          * @brief Returns a pointer to the previous node in the linked list
@@ -115,7 +115,7 @@ namespace node
          */
         std::unique_ptr<Basic_Node<T>> &prev()
         {
-            return prev;
+            return m_prev;
         }
         /**
          * @brief Sets the next node pointer to the provided node
@@ -123,7 +123,7 @@ namespace node
          */
         void set_next(std::unique_ptr<Basic_Node<T>> &&next)
         {
-            this->next = std::move(next);
+            this->m_next = std::move(next);
         }
         /**
          * @brief Sets the previous node pointer to the provided node
@@ -131,7 +131,7 @@ namespace node
          */
         void set_prev(std::unique_ptr<Basic_Node<T>> &&prev)
         {
-            this->prev = std::move(prev);
+            this->m_prev = std::move(prev);
         }
     };
 
@@ -140,25 +140,25 @@ namespace node
     {
     protected:
         /// @brief The priority of the node, used to determine the order in which nodes are dequeued
-        int priority;
+        int m_priority;
 
     public:
         // Constructors
         /**
          * @brief Default constructor that initializes the node with default value of T
          */
-        Priority_Node() : Basic_Node<T>(), priority(0) {}
+        Priority_Node() : Basic_Node<T>(), m_priority(0) {}
         /**
          * @brief Parameterized constructor that initializes the node with the provided value and priority
          * @param value The value to initialize the node with
          */
-        Priority_Node(const T &value) : Basic_Node<T>(value), priority(0) {}
+        Priority_Node(const T &value) : Basic_Node<T>(value), m_priority(0) {}
         /**
          * @brief Parameterized constructor that initializes the node with the provided value and priority
          * @param value The value to initialize the node with
          * @param priority The priority of the node
          */
-        Priority_Node(const T &value, int priority) : Basic_Node<T>(value), priority(priority) {}
+        Priority_Node(const T &value, int priority) : Basic_Node<T>(value), m_priority(priority) {}
 
         // Methods
         /**
@@ -167,7 +167,7 @@ namespace node
          */
         int priority() const
         {
-            return priority;
+            return m_priority;
         }
 
         /**
@@ -176,7 +176,7 @@ namespace node
          */
         void set_priority(int priority)
         {
-            this->priority = priority;
+            this->m_priority = priority;
         }
 
         // Operators
@@ -187,7 +187,7 @@ namespace node
          */
         bool operator<(const Priority_Node &other) const
         {
-            return priority < other.priority;
+            return m_priority < other.priority();
         }
         /**
          * @brief Compare the priority of this node with the priority of the other node for greater than
@@ -196,7 +196,7 @@ namespace node
          */
         bool operator>(const Priority_Node &other) const
         {
-            return priority > other.priority;
+            return m_priority > other.priority();
         }
         /**
          * @brief Compare the priority of this node with the priority of the other node for less than or equal to
@@ -205,7 +205,7 @@ namespace node
          */
         bool operator<=(const Priority_Node &other) const
         {
-            return priority <= other.priority;
+            return m_priority <= other.priority();
         }
         /**
          * @brief Compare the priority of this node with the priority of the other node for greater than or equal to
@@ -214,7 +214,7 @@ namespace node
          */
         bool operator>=(const Priority_Node &other) const
         {
-            return priority >= other.priority;
+            return m_priority >= other.priority();
         }
         /**
          * @brief Compare the priority of this node with the priority of the other node for equality
@@ -223,7 +223,7 @@ namespace node
          */
         bool operator==(const Priority_Node &other) const
         {
-            return priority == other.priority;
+            return m_priority == other.priority();
         }
         /**
          * @brief Compare the priority of this node with the priority of the other node for inequality
@@ -232,7 +232,7 @@ namespace node
          */
         bool operator!=(const Priority_Node &other) const
         {
-            return priority != other.priority;
+            return m_priority != other.priority();
         }
     };
 
@@ -243,30 +243,30 @@ namespace node
         // Attributes
 
         /// @brief A list of pointers to child nodes in the tree
-        std::vector<std::unique_ptr<Basic_Node<T>>> children;
-        std::unique_ptr<Basic_Node<T>> parent;
+        std::vector<std::unique_ptr<Basic_Node<T>>> m_children;
+        std::unique_ptr<Basic_Node<T>> m_parent;
 
         /// @brief the number of children nodes this node has
-        size_t size;
+        size_t m_size;
 
     public:
         // Constructors
         /**
          * @brief Default constructor that initializes the node with default value of T
          */
-        N_Tree_Node() : Basic_Node<T>(), children() {}
+        N_Tree_Node() : Basic_Node<T>(), m_children() {}
         /**
          * @brief Parameterized constructor that initializes the node with the provided value
          * @param value The value to initialize the node with
          */
-        N_Tree_Node(const T &value) : Basic_Node<T>(value), children() {}
+        N_Tree_Node(const T &value) : Basic_Node<T>(value), m_children() {}
         /**
          * @brief Parameterized constructor that initializes the node with the provided value and children
          * @param value The value to initialize the node with
          * @param children A list of pointers to child nodes in the tree
          */
         N_Tree_Node(const T &value, const std::vector<std::unique_ptr<Basic_Node<T>>> &children)
-            : Basic_Node<T>(value), children(children), size(children.size()) {}
+            : Basic_Node<T>(value), m_children(children), m_size(children.size()) {}
 
         // Methods
         /**
@@ -275,8 +275,8 @@ namespace node
          */
         void add_child(std::unique_ptr<Basic_Node<T>> child)
         {
-            children.push_back(std::move(child));
-            size++;
+            m_children.push_back(std::move(child));
+            m_size++;
         }
 
         /**
@@ -285,7 +285,7 @@ namespace node
          */
         void set_parent(std::unique_ptr<Basic_Node<T>> parent)
         { 
-            this->parent = std::move(parent);
+            this->m_parent = std::move(parent);
         }
 
         /**
@@ -295,10 +295,10 @@ namespace node
          */
         void remove_child(size_t index)
         {
-            if (index < children.size())
+            if (index < m_children.size())
             {
-                children.erase(children.begin() + index);
-                size--;
+                m_children.erase(m_children.begin() + index);
+                m_size--;
             }
             else
             {
@@ -312,13 +312,13 @@ namespace node
          */
         void remove_child(std::unique_ptr<Basic_Node<T>> &child)
         {
-            auto found = std::find_if(children.begin(), children.end(),
+            auto found = std::find_if(m_children.begin(), m_children.end(),
                                       [&child](const std::unique_ptr<Basic_Node<T>> &current)
                                       { return current.get() == child.get(); });
-            if (found != children.end())
+            if (found != m_children.end())
             {
-                children.erase(found);
-                size--;
+                m_children.erase(found);
+                m_size--;
             }
         }
 
@@ -328,26 +328,26 @@ namespace node
          */
         void remove_parent() 
         {
-            parent = nullptr;
-            //parent.reset();
+            m_parent = nullptr;
+            //m_parent.reset();
         }
 
         /**
          * @brief Returns a list of pointers to child nodes
          * @return A list of pointers to child nodes in the tree
          */
-        std::vector<std::unique_ptr<Basic_Node<T>>> &get_children()
+        std::vector<std::unique_ptr<Basic_Node<T>>> &children()
         {
-            return children;
+            return m_children;
         }
 
         /**
          * @brief Returns a pointer to the parent node
          * @return A pointer to the parent node or null if there is no parent
          */
-        std::unique_ptr<Basic_Node<T>> &get_parent() 
+        std::unique_ptr<Basic_Node<T>> &parent() 
         {
-            return parent;
+            return m_parent;
         }
 
         /**
@@ -356,7 +356,7 @@ namespace node
          */
         size_t size() const
         {
-            return size;
+            return m_size;
         }
     };
 
@@ -365,15 +365,15 @@ namespace node
     {
     protected:
         /// @brief Pointer to the left child node in the binary tree
-        std::unique_ptr<Basic_Node<T>> left;
+        std::unique_ptr<Basic_Node<T>> m_left;
         /// @brief Pointer to the right child node in the binary tree
-        std::unique_ptr<Basic_Node<T>> right;
+        std::unique_ptr<Basic_Node<T>> m_right;
         /// @brief Pointer to the parent node in the binary tree
-        std::unique_ptr<Basic_Node<T>> parent;
+        std::unique_ptr<Basic_Node<T>> m_parent;
+    public:
         /// @brief The maximum number of children for a binary tree node (2)
         static const size_t MAX_CHILDREN = 2;
 
-    public:
         // Constructors
         /**
          * @brief Default constructor that initializes the node with default value of T
@@ -392,7 +392,7 @@ namespace node
          */
         std::unique_ptr<Basic_Node<T>> left() const
         {
-            return left;
+            return m_left;
         }
 
         /**
@@ -401,7 +401,7 @@ namespace node
          */
         std::unique_ptr<Basic_Node<T>> right() const
         {
-            return right;
+            return m_right;
         }
 
         /**
@@ -410,7 +410,7 @@ namespace node
          */
         std::unique_ptr<Basic_Node<T>> parent() const
         {
-            return parent;
+            return m_parent;
         }
 
         /**
@@ -419,10 +419,10 @@ namespace node
          */
         void set_left(std::unique_ptr<Basic_Node<T>> left)
         {
-            if (this->left == nullptr)
-                size++;
-            this->left = std::move(left);
-            children.at(0) = std::move(this->left);
+            if (this->m_left == nullptr)
+                m_size++;
+            this->m_left = std::move(left);
+            m_children.at(0) = std::move(this->m_left);
         }
 
         /**
@@ -431,10 +431,10 @@ namespace node
          */
         void set_right(std::unique_ptr<Basic_Node<T>> right)
         {
-            if (this->right == nullptr)
-                size++;
-            this->right = std::move(right);
-            children.at(1) = std::move(this->right);
+            if (this->m_right == nullptr)
+                m_size++;
+            this->m_right = std::move(right);
+            m_children.at(1) = std::move(this->m_right);
         }
 
         /**
@@ -442,13 +442,13 @@ namespace node
          * @param child A pointer to the child node to be added
          * @note If more than two children are added, throws an error
          */
-        void add_child(std::unique_ptr<Basic_Node<T>> child) override
+        void add_child(std::unique_ptr<Basic_Node<T>> child)
         {
-            if (size >= MAX_CHILDREN)
+            if (m_size >= MAX_CHILDREN)
             {
                 throw std::runtime_error("Cannot add more than two children to a binary tree node");
             }
-            if (left == nullptr)
+            if (m_left == nullptr)
             {
                 set_left(std::move(child));
             }
@@ -456,7 +456,7 @@ namespace node
             {
                 set_right(std::move(child));
             }
-            size++;
+            m_size++;
         }
 
         /**
@@ -465,10 +465,10 @@ namespace node
         void remove_left()
         { 
             
-            if (left != nullptr)
+            if (m_left != nullptr)
             {
-                left.reset();
-                size--;
+                m_left.reset();
+                m_size--;
             }
         }
 
@@ -477,10 +477,10 @@ namespace node
          */
         void remove_right()
         { 
-            if (right != nullptr)
+            if (m_right != nullptr)
             {
-                right.reset();
-                size--;
+                m_right.reset();
+                m_size--;
             }
         }
     };
@@ -490,21 +490,21 @@ namespace node
     {
     protected:
         /// @brief The height of the node in the balanced tree, the number of edges on the longest path from the node to a leaf, used for balancing purposes
-        size_t height;
+        size_t m_height;
         /// @brief The balance factor of the node, used for balancing purposes. Negative values indicate a left-heavy tree, positive values indicate a right-heavy tree, and zero indicates a balanced tree
-        int balance_factor;
+        int m_balance_factor;
 
     public:
         // Constructors
         /**
          * @brief Default constructor that initializes the node with default value of T
          */
-        Balanced_Tree_Node() : Binary_Tree_Node<T>(), height(0), balance_factor(0) {}
+        Balanced_Tree_Node() : Binary_Tree_Node<T>(), m_height(0), m_balance_factor(0) {}
         /**
          * @brief Parameterized constructor that initializes the node with the provided value
          * @param value The value to initialize the node with
          */
-        Balanced_Tree_Node(const T &value) : Binary_Tree_Node<T>(value), height(0), balance_factor(0) {}
+        Balanced_Tree_Node(const T &value) : Binary_Tree_Node<T>(value), m_height(0), m_balance_factor(0) {}
 
         // Methods
         /**
@@ -513,7 +513,7 @@ namespace node
          */
         size_t height() const
         {
-            return height;
+            return m_height;
         }
 
         /**
@@ -522,7 +522,7 @@ namespace node
          */
         void set_height(size_t height)
         {
-            this->height = height;
+            this->m_height = m_height;
         }
 
         /**
@@ -531,7 +531,7 @@ namespace node
          */
         int balance_factor() const
         {
-            return balance_factor;
+            return m_balance_factor;
         }
 
         /**
@@ -540,7 +540,7 @@ namespace node
          */
         void set_balance_factor(int balance_factor)
         {
-            this->balance_factor = balance_factor;
+            this->m_balance_factor = balance_factor;
         }
 
     protected:
@@ -554,19 +554,19 @@ namespace node
             size_t right_height = 0;
 
             // gets the left height
-            if (this->left)
-                left_height = left->height();
+            if (this->m_left)
+                left_height = m_left->height();
 
             // gets the right height
             if (this->right)
                 right_height = right->height();
 
             // sets the height and balance factor
-            height = 1 + std::max(left_height, right_height);
-            balance_factor = static_cast<int>(right_height) - static_cast<int>(left_height);
+            m_height = 1 + std::max(left_height, right_height);
+            m_balance_factor = static_cast<int>(right_height) - static_cast<int>(left_height);
 
             // calls rebalance if node is unbalanced
-            if (balance_factor < -1 || balance_factor > 1)
+            if (m_balance_factor < -1 || m_balance_factor > 1)
             {
                 rebalance();
             }
@@ -578,10 +578,10 @@ namespace node
          */
         void rebalance() {
             // Check for direction of inbalance
-            if (balance_factor > 1) {
+            if (m_balance_factor > 1) {
                 // Right heavy, peform left rotate
                 *this = left_rotate();
-            } else if (balance_factor < -1) {
+            } else if (m_balance_factor < -1) {
                 // Left heavy, perform right rotate
                 *this = right_rotate();
             }
@@ -616,20 +616,20 @@ namespace node
     {
     protected:
         /// @brief The priority of the node, used to determine the order in which nodes are dequeued
-        int priority;
+        int m_priority;
 
     public:
         // Constructors
         /**
          * @brief Default constructor that initializes the node with default value of T
          */
-        Heap_Node() : Balanced_Tree_Node<T>(), priority(0) {}
+        Heap_Node() : Balanced_Tree_Node<T>(), m_priority(0) {}
         /**
          * @brief Parameterized constructor that initializes the node with the provided value and priority
          * @param value The value to initialize the node with
          * @param priority The priority of the node
          */
-        Heap_Node(const T &value, int priority) : Balanced_Tree_Node<T>(value), priority(priority) {}
+        Heap_Node(const T &value, int priority) : Balanced_Tree_Node<T>(value), m_priority(priority) {}
 
         // Methods
         /**
@@ -638,7 +638,7 @@ namespace node
          */
         int priority() const
         {
-            return priority;
+            return m_priority;
         }
 
         /**
@@ -647,7 +647,7 @@ namespace node
          */
         void set_priority(int priority)
         {
-            this->priority = priority;
+            this->m_priority = priority;
         }
     };
 
@@ -656,20 +656,20 @@ namespace node
     {
     protected:
         /// @brief A list of pointer to connected nodes or edges in the graph
-        std::vector<std::unique_ptr<Basic_Node<T>>> edges;
+        std::vector<std::unique_ptr<Basic_Node<T>>> m_edges;
 
     public:
         // Constructors
         /**
          * @brief Default constructor that initializes the node with default value of T
          */
-        Graph_Node() : Basic_Node<T>(), edges() {}
+        Graph_Node() : Basic_Node<T>(), m_edges() {}
 
         /**
          * @brief Parameterized constructor that initializes the node with the provided value
          * @param value The value to initialize the node with
          */
-        Graph_Node(const T &value) : Basic_Node<T>(value), edges() {}
+        Graph_Node(const T &value) : Basic_Node<T>(value), m_edges() {}
 
         // Methods
         /**
@@ -678,7 +678,7 @@ namespace node
          */
         void add_edge(std::unique_ptr<Basic_Node<T>> edge)
         {
-            edges.push_back(std::move(edge));
+            m_edges.push_back(std::move(edge));
         }
 
         /**
@@ -688,9 +688,9 @@ namespace node
          */
         void remove_edge(size_t index)
         {
-            if (index < edges.size())
+            if (index < m_edges.size())
             {
-                edges.erase(edges.begin() + index);
+                m_edges.erase(m_edges.begin() + index);
             }
             else
             {
@@ -704,12 +704,12 @@ namespace node
          */
         void remove_edge(std::unique_ptr<Basic_Node<T>> &edge)
         {
-            auto found = std::find_if(edges.begin(), edges.end(),
+            auto found = std::find_if(m_edges.begin(), m_edges.end(),
                                       [&edge](const std::unique_ptr<Basic_Node<T>> &current)
                                       { return current.get() == edge.get(); });
-            if (found != edges.end())
+            if (found != m_edges.end())
             {
-                edges.erase(found);
+                m_edges.erase(found);
             }
         }
 
@@ -717,9 +717,9 @@ namespace node
          * @brief Returns a list of pointers to connected nodes or edges
          * @return A list of pointers to connected nodes or edges in the graph
          */
-        std::vector<std::unique_ptr<Basic_Node<T>>> &get_edges()
+        std::vector<std::unique_ptr<Basic_Node<T>>> &edges()
         {
-            return edges;
+            return m_edges;
         }
     };
 
@@ -728,20 +728,20 @@ namespace node
     {
     protected:
         /// @brief A list of weights corresponding to the edges in the graph
-        std::vector<double> weights;
+        std::vector<double> m_weights;
 
     public:
         // Constructors
         /**
          * @brief Default constructor that initializes the node with default value of T
          */
-        Weighted_Graph_Node() : Graph_Node<T>(), weights() {}
+        Weighted_Graph_Node() : Graph_Node<T>(), m_weights() {}
 
         /**
          * @brief Parameterized constructor that initializes the node with the provided value
          * @param value The value to initialize the node with
          */
-        Weighted_Graph_Node(const T &value) : Graph_Node<T>(value), weights() {}
+        Weighted_Graph_Node(const T &value) : Graph_Node<T>(value), m_weights() {}
 
         // Methods
         /**
@@ -752,7 +752,7 @@ namespace node
         void add_edge(std::unique_ptr<Basic_Node<T>> edge, double weight)
         {
             Graph_Node<T>::add_edge(std::move(edge));
-            weights.push_back(weight);
+            m_weights.push_back(weight);
         }
 
         /**
@@ -763,9 +763,9 @@ namespace node
         void remove_edge(size_t index)
         {
             Graph_Node<T>::remove_edge(index);
-            if (index < weights.size())
+            if (index < m_weights.size())
             {
-                weights.erase(weights.begin() + index);
+                m_weights.erase(m_weights.begin() + index);
             }
             else
             {
@@ -777,9 +777,9 @@ namespace node
          * @brief Returns a list of weights corresponding to the edges in the graph
          * @return A list of weights corresponding to the edges in the graph
          */
-        std::vector<double> &get_weights()
+        std::vector<double> &weights()
         {
-            return weights;
+            return m_weights;
         }
-    }
+    };
 }
