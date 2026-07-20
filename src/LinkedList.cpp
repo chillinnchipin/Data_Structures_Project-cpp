@@ -1,4 +1,4 @@
-#include "LinkedList.hpp"
+#include "include/LinkedList.hpp"
 
 namespace structures
 {

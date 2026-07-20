@@ -14,7 +14,6 @@ RUN apt-get update
 RUN apt-get upgrade -y
 
 # Copy source code
-COPY include/ /cpp_node/include/
 COPY src/ /cpp_node/src/
 COPY test/ /cpp_node/test/
 COPY makefile /cpp_node/

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/cppNode.hpp"
+#include "include/cppNode.hpp"
 using std::cout;
 using std::endl;
 
