@@ -14,11 +14,11 @@ RUN apt-get update
 RUN apt-get upgrade -y
 
 # Copy source code
-COPY src/ /cpp_node/src/
-COPY test/ /cpp_node/test/
 COPY makefile /cpp_node/
 COPY CMakeLists.txt /cpp_node/
 COPY .gitignore /cpp_node/
+COPY src/ /cpp_node/src/
+COPY test/ /cpp_node/test/
 
 # Compile and build
 RUN make all
