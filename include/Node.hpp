@@ -361,7 +361,7 @@ namespace node
     };
 
     template <typename T>
-    class Binary_Tree_Node : public N_Tree_Node<T>
+    class Binary_Tree_Node : public Basic_Node<T>
     {
     protected:
         /// @brief Pointer to the left child node in the binary tree
@@ -378,12 +378,12 @@ namespace node
         /**
          * @brief Default constructor that initializes the node with default value of T
          */
-        Binary_Tree_Node() : N_Tree_Node<T>() {}
+        Binary_Tree_Node() : Basic_Node<T>() {}
         /**
          * @brief Parameterized constructor that initializes the node with the provided value
          * @param value The value to initialize the node with
          */
-        Binary_Tree_Node(const T &value) : N_Tree_Node<T>(value) {}
+        Binary_Tree_Node(const T &value) : Basic_Node<T>(value) {}
 
         // Methods
         /**
@@ -419,10 +419,7 @@ namespace node
          */
         void set_left(std::unique_ptr<Basic_Node<T>> left)
         {
-            if (this->m_left == nullptr)
-                m_size++;
             this->m_left = std::move(left);
-            m_children.at(0) = std::move(this->m_left);
         }
 
         /**
@@ -431,10 +428,7 @@ namespace node
          */
         void set_right(std::unique_ptr<Basic_Node<T>> right)
         {
-            if (this->m_right == nullptr)
-                m_size++;
             this->m_right = std::move(right);
-            m_children.at(1) = std::move(this->m_right);
         }
 
         /**
@@ -444,19 +438,18 @@ namespace node
          */
         void add_child(std::unique_ptr<Basic_Node<T>> child)
         {
-            if (m_size >= MAX_CHILDREN)
-            {
-                throw std::runtime_error("Cannot add more than two children to a binary tree node");
-            }
             if (m_left == nullptr)
             {
                 set_left(std::move(child));
             }
-            else
+            else if (m_right == nullptr)
             {
                 set_right(std::move(child));
             }
-            m_size++;
+            else 
+            {
+                throw std::runtime_error("Cannot add more than two children to a binary tree node");
+            }
         }
 
         /**
@@ -468,7 +461,6 @@ namespace node
             if (m_left != nullptr)
             {
                 m_left.reset();
-                m_size--;
             }
         }
 
@@ -480,7 +472,6 @@ namespace node
             if (m_right != nullptr)
             {
                 m_right.reset();
-                m_size--;
             }
         }
     };
