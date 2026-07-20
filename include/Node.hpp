@@ -238,6 +238,7 @@ namespace node
 
         /// @brief A list of pointers to child nodes in the tree
         std::vector<std::unique_ptr<Basic_Node<T>>> children;
+        std::unique_ptr<Basic_Node<T>> parent;
 
         /// @brief the number of children nodes this node has
         size_t size;
@@ -270,6 +271,15 @@ namespace node
         {
             children.push_back(std::move(child));
             size++;
+        }
+
+        /**
+         * @brief Sets the parent node of the current node
+         * @param parent A pointer to the parent node to be added
+         */
+        void set_parent(std::unique_ptr<Basic_Node<T>> parent)
+        { 
+            this->parent = std::move(parent);
         }
 
         /**
@@ -307,12 +317,31 @@ namespace node
         }
 
         /**
+         * @brief Removes the parent node from the current node
+         * @note This method sets the parent pointer to null, effectively removing the parent-child relationship
+         */
+        void remove_parent() 
+        {
+            parent = nullptr;
+            //parent.reset();
+        }
+
+        /**
          * @brief Returns a list of pointers to child nodes
          * @return A list of pointers to child nodes in the tree
          */
         std::vector<std::unique_ptr<Basic_Node<T>>> &get_children()
         {
             return children;
+        }
+
+        /**
+         * @brief Returns a pointer to the parent node
+         * @return A pointer to the parent node or null if there is no parent
+         */
+        std::unique_ptr<Basic_Node<T>> &get_parent() 
+        {
+            return parent;
         }
 
         /**
@@ -333,6 +362,8 @@ namespace node
         std::unique_ptr<Basic_Node<T>> left;
         /// @brief Pointer to the right child node in the binary tree
         std::unique_ptr<Basic_Node<T>> right;
+        /// @brief Pointer to the parent node in the binary tree
+        std::unique_ptr<Basic_Node<T>> parent;
         /// @brief The maximum number of children for a binary tree node (2)
         static const size_t MAX_CHILDREN = 2;
 
@@ -365,6 +396,15 @@ namespace node
         std::unique_ptr<Basic_Node<T>> right() const
         {
             return right;
+        }
+
+        /**
+         * @brief Returns a pointer to the parent node
+         * @return A pointer to the parent node or null if there is no parent
+         */
+        std::unique_ptr<Basic_Node<T>> parent() const
+        {
+            return parent;
         }
 
         /**
@@ -411,6 +451,31 @@ namespace node
                 set_right(std::move(child));
             }
             size++;
+        }
+
+        /**
+         * @brief Removes the left node in the tree and sets the left node pointer to null
+         */
+        void remove_left()
+        { 
+            
+            if (left != nullptr)
+            {
+                left.reset();
+                size--;
+            }
+        }
+
+        /**
+         * @brief Removes the right node in the tree and sets the right node pointer to null
+         */
+        void remove_right()
+        { 
+            if (right != nullptr)
+            {
+                right.reset();
+                size--;
+            }
         }
     };
 
@@ -539,4 +604,176 @@ namespace node
             // TODO
         }
     };
+
+    template <typename T>
+    class Heap_Node : public Balanced_Tree_Node<T>
+    {
+    protected:
+        /// @brief The priority of the node, used to determine the order in which nodes are dequeued
+        int priority;
+
+    public:
+        // Constructors
+        /**
+         * @brief Default constructor that initializes the node with default value of T
+         */
+        Heap_Node() : Balanced_Tree_Node<T>(), priority(0) {}
+        /**
+         * @brief Parameterized constructor that initializes the node with the provided value and priority
+         * @param value The value to initialize the node with
+         * @param priority The priority of the node
+         */
+        Heap_Node(const T &value, int priority) : Balanced_Tree_Node<T>(value), priority(priority) {}
+
+        // Methods
+        /**
+         * @brief Returns the priority of the node
+         * @return The priority of the node
+         */
+        int priority() const
+        {
+            return priority;
+        }
+
+        /**
+         * @brief Sets the priority of the node to the provided value
+         * @param priority The value to set the priority to
+         */
+        void set_priority(int priority)
+        {
+            this->priority = priority;
+        }
+    };
+
+    template <typename T>
+    class Graph_Node : public Basic_Node<T>
+    {
+    protected:
+        /// @brief A list of pointer to connected nodes or edges in the graph
+        std::vector<std::unique_ptr<Basic_Node<T>>> edges;
+
+    public:
+        // Constructors
+        /**
+         * @brief Default constructor that initializes the node with default value of T
+         */
+        Graph_Node() : Basic_Node<T>(), edges() {}
+
+        /**
+         * @brief Parameterized constructor that initializes the node with the provided value
+         * @param value The value to initialize the node with
+         */
+        Graph_Node(const T &value) : Basic_Node<T>(value), edges() {}
+
+        // Methods
+        /**
+         * @brief Adds an edge to the current node
+         * @param edge A pointer to the node that is connected by the edge
+         */
+        void add_edge(std::unique_ptr<Basic_Node<T>> edge)
+        {
+            edges.push_back(std::move(edge));
+        }
+
+        /**
+         * @brief Removes an edge from the current node at the specified index
+         * @param index The index of the edge to be removed
+         * @note If the index is out of bounds, throws an error
+         */
+        void remove_edge(size_t index)
+        {
+            if (index < edges.size())
+            {
+                edges.erase(edges.begin() + index);
+            }
+            else
+            {
+                throw std::out_of_range("Index out of bounds");
+            }
+        }
+
+        /**
+         * @brief Removes a specific edge from the current node
+         * @param edge A pointer to the node that is connected by the edge to be removed
+         */
+        void remove_edge(std::unique_ptr<Basic_Node<T>> &edge)
+        {
+            auto found = std::find_if(edges.begin(), edges.end(),
+                                      [&edge](const std::unique_ptr<Basic_Node<T>> &current)
+                                      { return current.get() == edge.get(); });
+            if (found != edges.end())
+            {
+                edges.erase(found);
+            }
+        }
+
+        /**
+         * @brief Returns a list of pointers to connected nodes or edges
+         * @return A list of pointers to connected nodes or edges in the graph
+         */
+        std::vector<std::unique_ptr<Basic_Node<T>>> &get_edges()
+        {
+            return edges;
+        }
+    };
+
+    template <typename T>
+    class Weighted_Graph_Node : public Graph_Node<T>
+    {
+    protected:
+        /// @brief A list of weights corresponding to the edges in the graph
+        std::vector<double> weights;
+
+    public:
+        // Constructors
+        /**
+         * @brief Default constructor that initializes the node with default value of T
+         */
+        Weighted_Graph_Node() : Graph_Node<T>(), weights() {}
+
+        /**
+         * @brief Parameterized constructor that initializes the node with the provided value
+         * @param value The value to initialize the node with
+         */
+        Weighted_Graph_Node(const T &value) : Graph_Node<T>(value), weights() {}
+
+        // Methods
+        /**
+         * @brief Adds an edge with a corresponding weight to the current node
+         * @param edge A pointer to the node that is connected by the edge
+         * @param weight The weight of the edge
+         */
+        void add_edge(std::unique_ptr<Basic_Node<T>> edge, double weight)
+        {
+            Graph_Node<T>::add_edge(std::move(edge));
+            weights.push_back(weight);
+        }
+
+        /**
+         * @brief Removes an edge and its corresponding weight from the current node at the specified index
+         * @param index The index of the edge to be removed
+         * @note If the index is out of bounds, throws an error
+         */
+        void remove_edge(size_t index)
+        {
+            Graph_Node<T>::remove_edge(index);
+            if (index < weights.size())
+            {
+                weights.erase(weights.begin() + index);
+            }
+            else
+            {
+                throw std::out_of_range("Index out of bounds");
+            }
+        }
+
+        /**
+         * @brief Returns a list of weights corresponding to the edges in the graph
+         * @return A list of weights corresponding to the edges in the graph
+         */
+        std::vector<double> &get_weights()
+        {
+            return weights;
+        }
+    }
 }

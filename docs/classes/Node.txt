@@ -78,17 +78,23 @@ Tree_Node:Basic_Node<typeName T>
 
 Attributes
 # children: Basic_Node<T>[] - A list of pointers to child nodes in the tree.
+# parent: Basic_Node<T>[] - a pointer to the parent node
 
 Methods
 + add_child(child: Basic_Node<T>): void - Adds a child node to the current node.
     Parameter - child: A pointer to the child node to be added.
-+ remove_child(int index): void - Removes a child node at the specified index.
++ add_parent(parent: Basic_Node<T>): void - sets the parent node to the given node
+    Parameter - parent: a pointer to the parent node to be added
++ remove_child(index: int): void - Removes a child node at the specified index.
     Parameter - index: The index of the child node to be removed.
     Note - If the index is out of bounds, throws error.
 + remove_child(child: Basic_Node<T>): void - Removes a child node from the current node.
     Parameter - child: A pointer to the child node to be removed.
++ remove_parent(): void - removes the parent node from the current node
 + get_children(): Basic_Node<T>[] - Returns a list of pointers to child nodes.
     Return - A list of pointers to child nodes in the tree.
++ get_parent(): Basic_Node<T>[] - Returns a pointer to the node's parent node
+    Return - a pointer to the node's parent node
 
 Binary_Tree_Node:Basic_Node<typeName T>
     A specialized node that is used in binary tree data structures.
@@ -96,16 +102,23 @@ Binary_Tree_Node:Basic_Node<typeName T>
 Attributes
 # left: Basic_Node<T> - Pointer to the left child node in the binary tree.
 # right: Basic_Node<T> - Pointer to the right child node in the binary tree.
+# parent: Basic_Node<T> - Pointer to the parent node in the binary tree.
 
 Methods
 + left(): Basic_Node<T> - Returns a pointer to the left child node.
     Return - A pointer to the left child node in the binary tree.
 + right(): Basic_Node<T> - Returns a pointer to the right child node.
     Return - A pointer to the right child node in the binary tree.
++ parent(): Basic_Node<T> - Returns a pointer to the parent node
+    Return - a pointer to the parent node in the binary tree
 + set_left(Basic_Node<T> leftNode): void - Sets the left child node pointer to the provided node.
     Parameter - leftNode: A pointer to the left child node in the binary tree.
 + set_right(Basic_Node<T> rightNode): void - Sets the right child node pointer to the provided node.
     Parameter - rightNode: A pointer to the right child node in the binary tree.
++ set_parent(Basic_Node<T> parentNode): void - Sets the parent node pointer to the provided node.
+    Parameter - parentNode: A pointer to the parent node in the binary tree. 
++ remove_left(): void - removes the left node in the tree and sets the left node pointer to null 
++ remove_right(): void - removes the left node in the tree and sets the right node pointer to null
 
 Balanced_Tree_Node:Binary_Tree_Node<typeName T>
     A specialized node that is used in balanced tree data structures, such as AVL trees or Red-Black trees.
@@ -129,6 +142,18 @@ Methods
 + get_balance_factor(): int - Returns the balance factor of the node.
     Return - The balance factor of the node.
 
+Heap_Node:Binary_Tree_Node<typeName T> 
+    A specialized node class for heap-style priority queues
+
+Attributes
+# priority: int - The priority of the node, used to determine the order in which nodes are dequeued.
+
+Methods 
++ priority(): int - Returns the priority of the node.
+    Return - The priority of the node.
++ set_priority(priority: int): void - Sets the priority of the node to the provided value
+    Parameter - priority: The priority value to set for the node.
+
 Graph_Node:Basic_Node<typeName T>
     A specialized node that is used in graph data structures.
 
@@ -145,3 +170,13 @@ Methods
     Parameter - edgeNode: A pointer to the node that is connected by the edge to be removed.
 + get_edges(): Basic_Node<T>[] - Returns a list of pointers to connected nodes (edges).
     Return - A list of pointers to connected nodes in the graph.
+
+Weighted_Graph_node:Graph_Node<typeName T>
+    A specialized node that is used in weighted graph structures
+
+Attributes
+# weight: int - the weight of the node
+
+Methods
++ weight(): int - returns the weight of the node
++ set_weight(weight: int) - changes the weight of the node to the provided weight
