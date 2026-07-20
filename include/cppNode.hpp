@@ -1,0 +1,8 @@
+#include "Node.hpp"
+#include "algorthims.hpp"
+#include "LinkedList.hpp"
+#include "Stack.hpp"
+#include "Queue.hpp"
+#include "BST.hpp"
+#include "AVL.hpp"
+#include "Graph.hpp"
