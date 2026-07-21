@@ -284,7 +284,7 @@ namespace node
          * @param parent A pointer to the parent node to be added
          */
         void set_parent(std::unique_ptr<Basic_Node<T>> parent)
-        { 
+        {
             this->m_parent = std::move(parent);
         }
 
@@ -326,10 +326,10 @@ namespace node
          * @brief Removes the parent node from the current node
          * @note This method sets the parent pointer to null, effectively removing the parent-child relationship
          */
-        void remove_parent() 
+        void remove_parent()
         {
             m_parent = nullptr;
-            //m_parent.reset();
+            // m_parent.reset();
         }
 
         /**
@@ -345,7 +345,7 @@ namespace node
          * @brief Returns a pointer to the parent node
          * @return A pointer to the parent node or null if there is no parent
          */
-        std::unique_ptr<Basic_Node<T>> &parent() 
+        std::unique_ptr<Basic_Node<T>> &parent()
         {
             return m_parent;
         }
@@ -370,6 +370,7 @@ namespace node
         std::unique_ptr<Basic_Node<T>> m_right;
         /// @brief Pointer to the parent node in the binary tree
         std::unique_ptr<Basic_Node<T>> m_parent;
+
     public:
         /// @brief The maximum number of children for a binary tree node (2)
         static const size_t MAX_CHILDREN = 2;
@@ -446,7 +447,7 @@ namespace node
             {
                 set_right(std::move(child));
             }
-            else 
+            else
             {
                 throw std::runtime_error("Cannot add more than two children to a binary tree node");
             }
@@ -456,8 +457,8 @@ namespace node
          * @brief Removes the left node in the tree and sets the left node pointer to null
          */
         void remove_left()
-        { 
-            
+        {
+
             if (m_left != nullptr)
             {
                 m_left.reset();
@@ -468,7 +469,7 @@ namespace node
          * @brief Removes the right node in the tree and sets the right node pointer to null
          */
         void remove_right()
-        { 
+        {
             if (m_right != nullptr)
             {
                 m_right.reset();
@@ -539,7 +540,8 @@ namespace node
          * @brief Checks the balance of the node and updates the height and balance factor accordingly
          * @note This method is typically called after modifying the tree structure to ensure that the node remains balanced
          */
-        void check_balance() {
+        void check_balance()
+        {
             // the height on the left and right of the node
             size_t left_height = 0;
             size_t right_height = 0;
@@ -567,12 +569,16 @@ namespace node
          * @brief Rebalances the node if it is unbalanced, adjusting pointers to maintain the properties of the balanced tree
          * @note This method is called if check_balance() detects an imbalance
          */
-        void rebalance() {
+        void rebalance()
+        {
             // Check for direction of inbalance
-            if (m_balance_factor > 1) {
+            if (m_balance_factor > 1)
+            {
                 // Right heavy, peform left rotate
                 *this = left_rotate();
-            } else if (m_balance_factor < -1) {
+            }
+            else if (m_balance_factor < -1)
+            {
                 // Left heavy, perform right rotate
                 *this = right_rotate();
             }
@@ -582,7 +588,8 @@ namespace node
          * @brief Performs a left rotation on the node to balance the tree.
          * @return A pointer to the new root of the subtree after the left rotation.
          */
-        std::unique_ptr<Balanced_Tree_Node<T>> left_rotate() {
+        std::unique_ptr<Balanced_Tree_Node<T>> left_rotate()
+        {
             // TODO
         }
 
@@ -590,14 +597,16 @@ namespace node
          * @brief Performs a right rotation on the node to balance the tree
          * @return A pointer to the new root of the subtree after the right rotation
          */
-        std::unique_ptr<Balanced_Tree_Node<T>> right_rotate() {
+        std::unique_ptr<Balanced_Tree_Node<T>> right_rotate()
+        {
             // TODO
         }
 
         /**
          * @brief Checks the height of the node and updates it based on the heights of its children
          */
-        void check_height() {
+        void check_height()
+        {
             // TODO
         }
     };
