@@ -1,9 +1,16 @@
 #include <gtest/gtest.h>
 #include "../src/include/cppNode.hpp"
+#include <memory>
+#include <vector>
+#include <algorithm>
+#include <string>
+using namespace std;
 
 class Basic_Node_Test : public testing::Test
 {
 };
+
+TEST_F(Basic_Node_Test, test_constructor) {}
 
 TEST_F(Basic_Node_Test, test_data) {}
 
@@ -91,7 +98,7 @@ class Balanced_Tree_Node_Test : public testing::Test {
 
 };
 
-TEST_F(Balanced_Tree_Node_Test, test_heigt) {}
+TEST_F(Balanced_Tree_Node_Test, test_height) {}
 
 TEST_F(Balanced_Tree_Node_Test, test_set_height) {}
 
